@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "FB Phase-1 Extract (Extension)",
+  "version": "1.0",
+  "description": "Capture FB Group Posts and save to local Phase-1 server",
+  "permissions": [
+    "scripting",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "http://localhost:3000/*",
+    "https://*.facebook.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.facebook.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["inject.js"],
+      "matches": ["https://*.facebook.com/*"]
+    }
+  ]
+}
